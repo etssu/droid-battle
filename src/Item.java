@@ -2,7 +2,6 @@ public enum Item {
     // items which take 1 slot
     LASER_GUN("laser gun", 10, 0, 1),
     HARPOON("harpoon", 8, 0, 1),
-    KATANA("katana", 7, 4, 2),
     DISRUPTOR_PISTOL("disruptor pistol", 6, 0, 1),
     MACE("mace", 6, 5, 1),
     DAZZLER("dazzler", 5, 0, 1),
@@ -10,9 +9,10 @@ public enum Item {
     SHIELD("shield", 1, 8, 1),
     ARMOR("armor", 0, 7, 1),
     // items which take 2 slots
-    CHAINSAW("chainsaw", 12, 3, 2),
-    PLASMA_GUN("plasma gun", 12, 1, 2),
+    CHAINSAW("chainsaw", 11, 3, 2),
+    PLASMA_GUN("plasma gun", 11, 1, 2),
     CROSSBOW("crossbow", 10, 1, 2),
+    KATANA("katana", 7, 4, 2),
     HAMMER("hammer", 6, 3, 2),
     THERMAL_CLAWS("thermal claws", 5, 2, 2),
     AXE("axe", 5, 6, 2);
@@ -37,5 +37,11 @@ public enum Item {
             }
         }
         return null;
+    }
+
+    public static void printItems(){
+        for (Item item : Item.values()){
+            System.out.printf("%s: %d, %d, %d;\n", item.itemName, item.attackPower,  item.defensePower,  item.slots);
+        }
     }
 }

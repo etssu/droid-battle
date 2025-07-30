@@ -1,41 +1,49 @@
 public class Droid {
-    private String name;
-    private Item item1;
-    private Item item2;
-    private int HP;
-    private int attackPower;
-    private int defensePower;
-    private int slots;
-    private boolean hasHealed;
-    int MAX_HP = 100;
+    public int HP;
+    public int slots;
+    public String name;
+    public Item item1;
+    public Item item2;
+    int itemCount;
+    protected int attackPower;
+    protected int defensePower;
+    protected boolean hasHealed;
 
-    public void createDroid(String droidName, String droidItem1, String droidItem2){
+    public Droid(String droidName, Item item1, Item item2){
         this.name = droidName;
-        if (droidItem1.isEmpty()){
-            System.out.println("Choose valid item next time!");
-        } else {
-            item1 = Item.getItem(droidItem1);
-        }
         this.HP = 100;
         this.hasHealed = false;
+        this.item1 = item1;
+        this.item2 = item2;
+        this.slots = item1.slots + (item2 != null ? item2.slots : 0);
+        this.itemCount = (item2 != null) ? 2 : 1;
+        this.attackPower = item1.attackPower + (item2 != null ? item2.attackPower : 0);
+        this.defensePower =  item1.defensePower + (item2 != null ? item2.defensePower : 0);
     }
 
-    public void attack(Droid attacker, Droid defender){
-        int totalDamage = attacker.attackPower - defender.defensePower;
-        if (totalDamage < 0){
+    public void attack(Droid defender){
+        int totalDamage = this.attackPower - defender.defensePower;
+        if (totalDamage < 1){
             totalDamage = 1;
         }
         defender.HP -= totalDamage;
+        System.out.printf("%s deals %d damage to %s\n",  this.name, totalDamage, defender.name);
     }
 
-    public void heal(Droid droid){
+    public void heal(){
+        int maxHP = 100;
         if (!this.hasHealed){
-            droid.HP +=20;
+            this.HP += 20;
             this.hasHealed = true;
-            if (droid.HP > MAX_HP) droid.HP = MAX_HP;
+            if (this.HP > maxHP) this.HP = maxHP;
+            System.out.println(this.name + " uses heal.");
         } else {
             System.out.println("Heal was already used.");
         }
+    }
+
+    public void surrender(){
+        System.out.println("Player " + this.name + " surrendered.");
     }
 
 }
