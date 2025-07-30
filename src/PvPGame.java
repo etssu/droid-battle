@@ -20,10 +20,10 @@ public class PvPGame {
             System.out.println();
         }
 
-        if (firstPlayer.HP < 0){
-            System.out.printf("Player %s wins!\n", firstPlayer.name);
-        } else {
+        if (firstPlayer.HP <= 0){
             System.out.printf("Player %s wins!\n", secondPlayer.name);
+        } else {
+            System.out.printf("Player %s wins!\n", firstPlayer.name);
         }
     }
 }

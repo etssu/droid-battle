@@ -20,7 +20,7 @@ public class Game {
                 case 3:
                     currentPlayer.surrender();
                     validChoice = true;
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid choice. Try again.");
             }

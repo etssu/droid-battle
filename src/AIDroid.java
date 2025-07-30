@@ -1,5 +1,8 @@
 public class AIDroid extends Droid {
     private static final Item[] items = Item.values();
+    public AIDroid() {
+        super();
+    }
 
     public static AIDroid createAIDroid(Droid playerDroid){
         AIDroid ai = new AIDroid();

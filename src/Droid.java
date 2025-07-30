@@ -9,7 +9,7 @@ public class Droid {
     protected int defensePower;
     protected boolean hasHealed;
 
-    public Droid(String droidName, Item item1, Item item2){
+    public Droid(String droidName, Item item1, Item item2){ // for player droids
         this.name = droidName;
         this.HP = 100;
         this.hasHealed = false;
@@ -19,6 +19,17 @@ public class Droid {
         this.itemCount = (item2 != null) ? 2 : 1;
         this.attackPower = item1.attackPower + (item2 != null ? item2.attackPower : 0);
         this.defensePower =  item1.defensePower + (item2 != null ? item2.defensePower : 0);
+    }
+    public Droid() {            // for AI droid
+        this.name = "Unnamed";
+        this.item1 = null;
+        this.item2 = null;
+        this.HP = 100;
+        this.attackPower = 0;
+        this.defensePower = 0;
+        this.hasHealed = false;
+        this.itemCount = 0;
+        this.slots = 0;
     }
 
     public void attack(Droid defender){
@@ -44,6 +55,7 @@ public class Droid {
 
     public void surrender(){
         System.out.println("Player " + this.name + " surrendered.");
+        this.HP = 0;
     }
 
 }
